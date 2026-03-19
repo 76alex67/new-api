@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: new-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/status
+    envVars:
+      - key: TZ
+        value: Asia/Shanghai
+      - key: ERROR_LOG_ENABLED
+        value: "true"
+      - key: BATCH_UPDATE_ENABLED
+        value: "true"
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: CRYPTO_SECRET
+        generateValue: true
+      - key: SQL_DSN
+        fromDatabase:
+          name: new-api-db
+          property: connectionString
+      - key: REDIS_CONN_STRING
+        fromService:
+          type: keyvalue
+          name: new-api-redis
+          property: connectionString
+
+  - type: keyvalue
+    name: new-api-redis
+    plan: free
+    ipAllowList: []
+    maxmemoryPolicy: allkeys-lru
+
+databases:
+  - name: new-api-db
+    plan: free
+    databaseName: new_api
+    ipAllowList: []
