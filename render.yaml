@@ -1,7 +1,6 @@
 services:
   - type: web
     name: new-api
-    repo: https://github.com/76alex67/new-api
     branch: main
     runtime: docker
     plan: free
