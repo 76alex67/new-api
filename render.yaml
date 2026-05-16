@@ -16,12 +16,4 @@ services:
       - key: SESSION_SECRET
         generateValue: true
       - key: SQL_DSN
-        fromDatabase:
-          name: new-api-db
-          property: connectionString
-
-databases:
-  - name: new-api-db
-    plan: free
-    databaseName: new_api
-    ipAllowList: []
+        sync: false
