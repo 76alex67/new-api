@@ -9,11 +9,27 @@ services:
     envVars:
       - key: TZ
         value: Asia/Shanghai
+      - key: PORT
+        value: "10000"
+      - key: NODE_TYPE
+        value: master
+      - key: NODE_NAME
+        value: render-new-api
       - key: ERROR_LOG_ENABLED
         value: "true"
       - key: BATCH_UPDATE_ENABLED
         value: "true"
+      - key: MEMORY_CACHE_ENABLED
+        value: "true"
+      - key: STREAMING_TIMEOUT
+        value: "300"
       - key: SESSION_SECRET
         generateValue: true
-      - key: SQL_DSN
+      - key: FRONTEND_BASE_URL
+        sync: false
+      - key: GOOGLE_ANALYTICS_ID
+        sync: false
+      - key: UMAMI_WEBSITE_ID
+        sync: false
+      - key: UMAMI_SCRIPT_URL
         sync: false
